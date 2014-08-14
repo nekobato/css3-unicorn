@@ -1,0 +1,61 @@
+@import "compass/css3";
+
+// animation mixin
+@mixin animation($options) {
+  -moz-animation: $options;
+  -webkit-animation: $options;
+  -ms-animation: $options;
+}
+
+// animation-fill-mode mixin
+@mixin animation-fill-mode($value) {
+  -moz-animation-fill-mode: $value;
+  -webkit-animation-fill-mode: $value;
+  -ms-animation-fill-mode: $value;
+}
+
+// keyframes mixin
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+}
+
+body {
+  background: #ddd;
+}
+
+.p4-circle {
+  margin: 70px;
+  width: 400px;
+  height: 400px;
+  @include border-radius(50%);
+  @include animation(motion-p4 1s linear 0.5s infinite alternate);
+  //@include animation-fill-mode(forwards);
+  -webkit-transform: rotateZ(45deg);
+  background-size: 0px 400px, 400px 400px;
+  background-repeat: no-repeat;
+  @include background-image(
+    linear-gradient(top, #fff 0%, #fff 100%),
+    linear-gradient(top, #ee0 0%, #ee0 100%)
+  );
+}
+
+@include keyframes(motion-p4) {
+  0% {
+    background-size: 0px 400px, 400px 400px;
+  }
+  
+  100% {
+    background-size: 400px 400px, 400px 400px;
+  }
+}
