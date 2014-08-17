@@ -1,0 +1,83 @@
+@import "compass/css3";
+
+// animation mixin
+@mixin animation($options) {
+  -moz-animation: $options;
+  -webkit-animation: $options;
+  -ms-animation: $options;
+}
+
+// keyframes mixin
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+body {
+  background: #FFFFFF;
+  margin: 70px;
+}
+
+.shrink {
+  position: relative;
+  width: 580px;
+  height: 195px;
+  .shrink-imagemask, .shrink-tailmask {
+    position: absolute;
+    height: 100%;
+    overflow: hidden;
+  }
+  .shrink-imagemask {
+    img {
+      width: 580px;
+    }
+    @include animation(shrink-imagemask 2s linear 0 infinite alternate);
+  }
+  .shrink-tailmask {
+    right: 0px;
+    @include animation(shrink-tailmask 2s linear 0 infinite alternate);
+    img {
+      position: absolute;
+      height: 100%;
+      width: 11600px;
+      @include animation(shrink-tail 2s linear 0 infinite alternate);
+    }
+  }
+}
+
+@include keyframes(shrink-imagemask) {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 580px; // (width of .shink)
+  }
+}
+
+@include keyframes(shrink-tailmask) {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 580px; // (width of .shink)
+  }
+}
+
+@include keyframes(shrink-tail) {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -11600px; // (width of .srink * 20)
+  }
+}
