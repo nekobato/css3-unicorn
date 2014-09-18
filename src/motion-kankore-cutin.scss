@@ -29,12 +29,12 @@ body {
 }
 
 
-$shrink-width: 580px; // 画像の横幅
-$shrink-animation: 2s linear 0s normal; // ここの値をいじって遊ぶ
+$shrink-width: 580px;
+$shrink-animation: 2s linear 0s normal;
 .shrink {
   position: relative;
   width: $shrink-width;
-  height: 195px; // 画像の縦幅
+  height: 195px;
   .shrink-imagemask, .shrink-tailmask {
     position: absolute;
     height: 100%;

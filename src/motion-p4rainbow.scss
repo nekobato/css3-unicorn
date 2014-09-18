@@ -1,0 +1,124 @@
+// animation mixin
+@mixin animation($options) {
+  -moz-animation: $options;
+  -webkit-animation: $options;
+  -ms-animation: $options;
+  animation: $options;
+}
+
+// keyframes mixin
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+body {
+  background: #FFFFFF;
+  margin: 70px;
+}
+
+.zuizui-zukkorobashi {
+
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 50px;
+  line-height: 130%;
+  overflow: hidden;
+  text-align: center;
+
+  .zuizui {
+    position: relative;
+    padding: 0 5px;
+  }
+
+  .right-hand {
+    @include animation(zuizui-right-hand 0.5s ease 0s infinite alternate);
+  }
+  .left-hand {
+    @include animation(zuizui-left-hand 0.5s ease 0s infinite alternate);
+  }
+  .right-str, .left-str {
+    display: inline-block;
+    position: absolute;
+    margin: 0;
+    width: 50px;
+  }
+  .right-str {
+    text-align: right;
+    left: -50px;
+    @include animation(zuizui-str infinite steps(4, end) 4s);
+  }
+  .left-str {
+    text-align: left;
+    right: -50px;
+    @include animation(zuizui-str infinite steps(4, end) 4s);
+  }
+  .right-kouka {
+    position: relative;
+    @include animation(zuizui-left-kouka 0.25s ease -0.25s infinite alternate);
+  }
+  .left-kouka {
+    position: relative;
+    @include animation(zuizui-left-kouka 0.25s ease 0s infinite alternate);
+  }
+
+}
+
+@include keyframes(zuizui-right-hand) {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(60deg);
+  }
+}
+@include keyframes(zuizui-left-hand) {
+  0% {
+    transform: rotateZ(60deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@include keyframes(zuizui-right-kouka) {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: 2px;
+  }
+}
+@include keyframes(zuizui-left-kouka) {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 2px;
+  }
+}
+@include keyframes(zuizui-left-hand) {
+  0% {
+    transform: rotateZ(60deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@include keyframes(zuizui-str) {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -400%;
+  }
+}
